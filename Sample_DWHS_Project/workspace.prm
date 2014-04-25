@@ -1,24 +1,21 @@
 ##Project path
-#Fri Aug 23 15:17:32 PDT 2013
+#Wed Aug 28 16:14:14 PDT 2013
 PROJECT= .
 
 
-#Fri Aug 23 15:17:32 PDT 2013
+#Wed Aug 28 16:14:14 PDT 2013
 DATA_TMP_DIR=${PROJECT}/data/tmp
 DATA_SOURCE_DIR=${PROJECT}/data/source
 DATA_DIR=${PROJECT}/data
+SCHEMA=koles
 STAGING_SUFFIX=`date2str(today(), "yyyyMMddHHmmss")`
+DWHS_USER=pavel.kolesnikov@gooddata.com
 GRAPH_DIR=${PROJECT}/graph
 TRANS_DIR=${PROJECT}/trans
 GDC_EVENTSTORE=test
 MODEL_DIR=${PROJECT}/model
 GDC_PROJECT_ID=afhlupbnoh3dxueb90x2r1ajlwyj82pt
+DWHS_PASSWORD=NWFlOTYwY2E5
 DATA_GOODDATA_DIR=${PROJECT}/data/gooddata
 DATA_TRANSFORM_DIR=${PROJECT}/data/transform
 META_DIR=${PROJECT}/meta
-
-# The following parameters should be specified in runtime
-
-DWHS_USER=set me via run parameters!
-DWHS_PASSWORD=set me via run parameters!
-SCHEMA=set me via run parameters!

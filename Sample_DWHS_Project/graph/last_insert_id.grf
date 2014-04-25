@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Graph author="koles" created="Fri Aug 23 16:18:48 PDT 2013" guiVersion="3.4.2.P" id="1377317051553" licenseType="Commercial" modified="Tue Aug 27 22:49:18 PDT 2013" modifiedBy="koles" name="DWHS_Eventstore.grf" revision="1.24" showComponentDetails="true">
+<Global>
+<Metadata id="Metadata0" previewAttachmentCharset="ISO-8859-1">
+<Record fieldDelimiter="|" name="recordName1" previewAttachmentCharset="ISO-8859-1" recordDelimiter="\n" type="delimited">
+<Field name="field1" type="string"/>
+</Record>
+</Metadata>
+<Connection database="VAAS" dbURL="jdbc:vertica://na1.dwh.gooddata.com:5433/" id="JDBC1" jdbc.threepartnaming="false" jdbcSpecific="VAAS" name="DWHS" password="${DWHS_PASSWORD}" threadSafeConnection="false" type="JDBC" user="${DWHS_USER}"/>
+<Property fileURL="workspace.prm" id="GraphParameter0"/>
+<Dictionary/>
+</Global>
+<Phase number="0">
+<Node dbConnection="JDBC1" enabled="disabled" guiName="DDL: create test table" guiX="46" guiY="85" id="DDL_CREATE_TEST_TABLE" inTransaction="all" printStatements="true" type="DB_EXECUTE">
+<attr name="sqlQuery"><![CDATA[CREATE TABLE IF NOT EXISTS ${SCHEMA}.last_insert_id_test (
+  _oid IDENTITY(1,1,1) PRIMARY KEY,
+  value VARCHAR(255)
+)]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Reformat" guiX="758" guiY="301" id="REFORMAT" type="REFORMAT"/>
+</Phase>
+<Phase number="1">
+<Node dbConnection="JDBC1" enabled="enabled" guiName="INSERT data" guiX="63" guiY="158" id="INSERT_DATA" inTransaction="all" printStatements="true" sqlStatementDelimiter=";" type="DB_EXECUTE">
+<attr name="sqlQuery"><![CDATA[INSERT INTO ${SCHEMA}.last_insert_id_test
+  (value) VALUES ('test')]]></attr>
+</Node>
+</Phase>
+<Phase number="2">
+<Node append="true" enabled="enabled" fileURL="${DATA_DIR}/last_insert_id_test.csv" guiName="CSV Writer" guiX="362" guiY="284" id="CSV_WRITER" type="DATA_WRITER"/>
+<Node dbConnection="JDBC1" enabled="enabled" guiName="SELECT last_insert_id" guiX="63" guiY="244" id="SELECT_LAST_INSERT_ID" type="DB_INPUT_TABLE">
+<attr name="sqlQuery"><![CDATA[SELECT last_insert_id()]]></attr>
+</Node>
+<Edge fromNode="SELECT_LAST_INSERT_ID:0" guiBendpoints="" guiRouter="Manhattan" id="Edge0" inPort="Port 0 (in)" metadata="Metadata0" outPort="Port 0 (out)" toNode="CSV_WRITER:0"/>
+</Phase>
+</Graph>
