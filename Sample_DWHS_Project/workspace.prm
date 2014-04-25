@@ -1,21 +1,21 @@
 ##Project path
-#Wed Aug 28 16:14:14 PDT 2013
-PROJECT= .
+#Fri Apr 25 13:06:51 PDT 2014
+PROJECT=.
 
 
-#Wed Aug 28 16:14:14 PDT 2013
+#Fri Apr 25 13:06:51 PDT 2014
 DATA_TMP_DIR=${PROJECT}/data/tmp
 DATA_SOURCE_DIR=${PROJECT}/data/source
 DATA_DIR=${PROJECT}/data
-SCHEMA=koles
+DSS_USER=set me via run parameters\!
+SCHEMA=set me via run parameters\!
 STAGING_SUFFIX=`date2str(today(), "yyyyMMddHHmmss")`
-DWHS_USER=pavel.kolesnikov@gooddata.com
 GRAPH_DIR=${PROJECT}/graph
 TRANS_DIR=${PROJECT}/trans
 GDC_EVENTSTORE=test
 MODEL_DIR=${PROJECT}/model
 GDC_PROJECT_ID=afhlupbnoh3dxueb90x2r1ajlwyj82pt
-DWHS_PASSWORD=NWFlOTYwY2E5
 DATA_GOODDATA_DIR=${PROJECT}/data/gooddata
 DATA_TRANSFORM_DIR=${PROJECT}/data/transform
 META_DIR=${PROJECT}/meta
+DSS_PASSWORD=set me via run parameters\!
