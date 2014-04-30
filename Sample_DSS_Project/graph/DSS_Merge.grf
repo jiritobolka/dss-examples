@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Graph author="koles" created="Thu Aug 01 11:33:37 PDT 2013" guiVersion="3.4.4.P" id="1375382343499" licenseType="Commercial" modified="Fri Apr 25 13:14:27 PDT 2014" modifiedBy="koles" name="MSF-3862" revision="1.143" showComponentDetails="true">
+<Graph author="koles" created="Thu Aug 01 11:33:37 PDT 2013" guiVersion="3.4.4.P" id="1375382343499" licenseType="Commercial" modified="Wed Apr 30 16:21:59 PDT 2014" modifiedBy="koles" name="MSF-3862" revision="1.152" showComponentDetails="true">
 <Global>
 <Metadata id="Metadata0" previewAttachment="${DATA_SOURCE_DIR}/5k-lines.csv" previewAttachmentCharset="ISO-8859-1">
 <Record label="5k-lines.csv" name="_5k_lines_csv" previewAttachment="${DATA_SOURCE_DIR}/5k-lines.csv" previewAttachmentCharset="ISO-8859-1" quoteChar="both" quotedStrings="false" recordDelimiter="\n" skipSourceRows="0" type="delimited">
@@ -26,7 +26,7 @@
 <Field eofAsDelimiter="false" name="last_modified" type="string"/>
 </Record>
 </Metadata>
-<Connection database="DSS" dbURL="jdbc:dss://na1.secure.gooddata.com/gdc/dss/instances/[DSS_INSTANCE_ID]" id="JDBC0" jdbc.threepartnaming="false" jdbcSpecific="DSS" name="DSS Connection" password="DSS_PASSSWORD" type="JDBC" user="${DSS_USER}"/>
+<Connection database="DSS" dbURL="jdbc:dss://secure.gooddata.com/gdc/dss/instances/${DSS_INSTANCE_ID}" id="JDBC0" jdbc.threepartnaming="false" jdbcSpecific="DSS" name="DSS Connection" password="${DSS_PASSWORD}" type="JDBC" user="${DSS_USER}"/>
 <Property fileURL="workspace.prm" id="GraphParameter0"/>
 <Note alignment="1" backgroundColorB="225" backgroundColorG="255" backgroundColorR="255" enabled="true" folded="false" height="134" id="Note0" textColorB="0" textColorG="0" textColorR="0" textFontSize="12" title="Phase 0 (and 999 - the last one)" titleColorB="0" titleColorG="0" titleColorR="0" titleFontSize="14" width="301" x="547" y="206">
 <attr name="text"><![CDATA[Create the opportunities target table unless it already exists.
@@ -54,7 +54,7 @@ Do not forget to set the following runtime parameters before running this graph:
 </Global>
 <Phase number="0">
 <Node dbConnection="JDBC0" enabled="enabled" guiName="DDL: create opportunities staging" guiX="275" guiY="206" id="DDL_CREATE_OPPORTUNITIES_STAGING" inTransaction="all" printStatements="true" type="DB_EXECUTE">
-<attr name="sqlQuery"><![CDATA[CREATE TABLE in_opportunities (
+<attr name="sqlQuery"><![CDATA[CREATE TABLE IF NOT EXISTS in_opportunities (
   id VARCHAR(32) NOT NULL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   created TIMESTAMP NOT NULL,
@@ -67,7 +67,7 @@ Do not forget to set the following runtime parameters before running this graph:
 )]]></attr>
 </Node>
 <Node dbConnection="JDBC0" enabled="enabled" guiName="DDL: create opportunities target" guiX="43" guiY="206" id="DDL_CREATE_OPPORTUNITIES_TARGET" inTransaction="all" printStatements="true" type="DB_EXECUTE">
-<attr name="sqlQuery"><![CDATA[CREATE TABLE IF NOT EXISTS ${SCHEMA}.opportunities (
+<attr name="sqlQuery"><![CDATA[CREATE TABLE IF NOT EXISTS opportunities (
   id VARCHAR(32) NOT NULL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   created TIMESTAMP NOT NULL,
@@ -84,7 +84,7 @@ Do not forget to set the following runtime parameters before running this graph:
 <Node dbConnection="JDBC0" enabled="enabled" guiName="LOAD: stage opportunities" guiX="43" guiY="372" id="LOAD_STAGE_OPPORTUNITIES" inTransaction="all" printStatements="true" type="DB_EXECUTE">
 <attr name="sqlQuery"><![CDATA[COPY in_opportunities
   (id, name, created, closed, stage, is_closed, is_won, amount, last_modified)
-  FROM LOCAL '${DATA_SOURCE_DIR}/opportunities.csv' UNCOMPRESSED
+  FROM LOCAL '${DATA_SOURCE_DIR}/opportunities.csv'
   SKIP 1
   ABORT ON ERROR]]></attr>
 </Node>
