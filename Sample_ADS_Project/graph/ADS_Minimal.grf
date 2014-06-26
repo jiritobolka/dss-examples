@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Graph author="koles" created="Thu Aug 01 11:33:37 PDT 2013" guiVersion="3.4.4.P" id="1375382343499" licenseType="Commercial" modified="Wed Apr 30 16:21:50 PDT 2014" modifiedBy="koles" name="MSF-3862" revision="1.128" showComponentDetails="true">
+<?xml version="1.0" encoding="UTF-8"?><Graph author="koles" created="Thu Aug 01 11:33:37 PDT 2013" guiVersion="3.4.4.P" id="1375382343499" licenseType="Commercial" modified="Thu Jun 26 14:37:33 CEST 2014" modifiedBy="jirtob" name="MSF-3862" revision="1.131" showComponentDetails="true">
 <Global>
 <Metadata id="Metadata0" previewAttachment="${DATA_SOURCE_DIR}/5k-lines.csv" previewAttachmentCharset="ISO-8859-1">
 <Record label="5k-lines.csv" name="_5k_lines_csv" previewAttachment="${DATA_SOURCE_DIR}/5k-lines.csv" previewAttachmentCharset="ISO-8859-1" quoteChar="both" quotedStrings="false" recordDelimiter="\n" skipSourceRows="0" type="delimited">
@@ -26,7 +25,7 @@
 <Field eofAsDelimiter="false" name="last_modified" type="string"/>
 </Record>
 </Metadata>
-<Connection database="DSS" dbURL="jdbc:dss://secure.gooddata.com/gdc/dss/instances/${DSS_INSTANCE_ID}" id="JDBC0" jdbc.threepartnaming="false" jdbcSpecific="DSS" name="DSS Connection" password="${DSS_PASSWORD}" type="JDBC" user="${DSS_USER}"/>
+<Connection database="DSS" dbURL="jdbc:dss://secure.gooddata.com/gdc/dss/instances/${ADS_INSTANCE_ID}" id="JDBC0" jdbc.threepartnaming="false" jdbcSpecific="DSS" name="ADS Connection" password="${DSS_PASSWORD}" type="JDBC" user="${ADS_USER}"/>
 <Property fileURL="workspace.prm" id="GraphParameter0"/>
 <Note alignment="1" backgroundColorB="225" backgroundColorG="255" backgroundColorR="255" enabled="true" folded="false" height="72" id="Note0" textColorB="0" textColorG="0" textColorR="0" textFontSize="12" title="Phase 0" titleColorB="0" titleColorG="0" titleColorR="0" titleFontSize="14" width="252" x="603" y="216">
 <attr name="text"><![CDATA[Create the opportunities table unless it already exists.]]></attr>
@@ -37,15 +36,15 @@
 <Note alignment="1" backgroundColorB="225" backgroundColorG="255" backgroundColorR="255" enabled="true" folded="false" height="72" id="Note3" textColorB="0" textColorG="0" textColorR="0" textFontSize="12" title="Phase 2" titleColorB="0" titleColorG="0" titleColorR="0" titleFontSize="14" width="248" x="605" y="377">
 <attr name="text"><![CDATA[Load results of a SQL query directly into a GoodData project]]></attr>
 </Note>
-<Note alignment="1" backgroundColorB="225" backgroundColorG="255" backgroundColorR="255" enabled="true" folded="false" height="170" id="Note2" textColorB="0" textColorG="0" textColorR="0" textFontSize="12" title="Minimal DSS based CloudConnect graph" titleColorB="0" titleColorG="0" titleColorR="0" titleFontSize="14" width="812" x="43" y="26">
-<attr name="text"><![CDATA[Technically, this minimal example is not how you are likely to be using DSS in your projects.
+<Note alignment="1" backgroundColorB="225" backgroundColorG="255" backgroundColorR="255" enabled="true" folded="false" height="170" id="Note2" textColorB="0" textColorG="0" textColorR="0" textFontSize="12" title="Minimal ADS based CloudConnect graph" titleColorB="0" titleColorG="0" titleColorR="0" titleFontSize="14" width="812" x="43" y="26">
+<attr name="text"><![CDATA[Technically, this minimal example is not how you are likely to be using ADS in your projects.
 This is because the underlying database does not enforce the primary key constraint and the COPY command does not merge updates into existing table automatically.
-For a more realistic data loading example refer to the DSS_Merge graph.
+For a more realistic data loading example refer to the ADS_Merge graph.
 
 Do not forget to set the following runtime parameters before running this graph:
-- DSS_USER
-- DSS_PASSWORD
-- DSS_INSTANCE_ID]]></attr>
+- ADS_USER
+- ADS_PASSWORD
+- ADS_INSTANCE_ID]]></attr>
 </Note>
 <Dictionary>
 <Entry id="DictionaryEntry0" input="true" name="data_source_abs_path" output="true" type="string"/>
